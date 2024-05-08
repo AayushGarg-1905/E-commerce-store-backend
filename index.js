@@ -13,9 +13,19 @@ const orderRouter = require('./routes/orderRoutes')
 const errorHandlerMiddleware=require('./middleware/error-handler');
 const notFoundMiddleware = require('./middleware/not-found');
 
-
+const corsOpts = {
+    origin: '*',
+    methods: [
+      'GET',
+      'POST',
+    ],
+    allowedHeaders: [
+      'Content-Type',
+    ],
+  };
+  
+app.use(cors(corsOpts));
 app.use(express.json());
-app.use(cors());
 app.use('/api/v1',authRouter);
 app.use('/api/v1',productRouter);
 app.use('/api/v1',orderRouter);
