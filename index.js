@@ -13,18 +13,12 @@ const orderRouter = require('./routes/orderRoutes')
 const errorHandlerMiddleware=require('./middleware/error-handler');
 const notFoundMiddleware = require('./middleware/not-found');
 
-const corsOpts = {
-    origin: '*',
-    methods: [
-      'GET',
-      'POST',
-    ],
-    allowedHeaders: [
-      'Content-Type',
-    ],
-  };
+app.use(cors({
+    origin: 'https://clever-paprenjak-895cff.netlify.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
   
-app.use(cors(corsOpts));
 app.use(express.json());
 app.use('/api/v1',authRouter);
 app.use('/api/v1',productRouter);
