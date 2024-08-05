@@ -14,12 +14,17 @@ const errorHandlerMiddleware=require('./middleware/error-handler');
 const notFoundMiddleware = require('./middleware/not-found');
 
 app.use(cors({
-    origin: 'https://clever-paprenjak-895cff.netlify.app',
+    origin: 'https://home-decor-1905.netlify.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
   }));
   
 app.use(express.json());
+
+app.get('/health',(req,res)=>{
+    res.send('Ok');
+})
+
 app.use('/api/v1',authRouter);
 app.use('/api/v1',productRouter);
 app.use('/api/v1',orderRouter);
